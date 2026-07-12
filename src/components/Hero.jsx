@@ -32,21 +32,21 @@ export default function Hero() {
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="#contact"
+              href="https://crm-leads-enterprise.onrender.com/?signup=1"
               className="font-body font-semibold text-navy bg-white hover:bg-ice px-7 py-3.5 rounded-lg transition-colors"
             >
-              Get a demo
+              Sign up free
             </a>
             <a
-              href="#pipeline"
+              href="https://crm-leads-enterprise.onrender.com"
               className="font-body font-semibold text-white/90 hover:text-white border border-white/20 hover:border-white/40 px-7 py-3.5 rounded-lg transition-colors"
             >
-              See how it works
+              Sign in
             </a>
           </div>
 
           <p className="mt-8 font-mono text-xs text-white/40">
-            No card required to preview &middot; Built for lead-gen agencies
+            No card required &middot; Built for lead-gen agencies
           </p>
         </div>
 
