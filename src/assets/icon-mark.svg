@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E2761"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="url(#badgeGrad)"/>
+
+  <!-- Lightning bolt -->
+  <path d="M 288 96
+           L 176 296
+           L 244 296
+           L 224 416
+           L 348 208
+           L 276 208
+           Z"
+        fill="url(#boltGrad)"/>
+
+  <!-- Amber spark accent at the tip -->
+  <circle cx="224" cy="416" r="18" fill="#f59e0b"/>
+</svg>
