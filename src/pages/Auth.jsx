@@ -196,7 +196,7 @@ export default function Auth({ initialMode = 'signup' }) {
                   <Field label="Company name" value={form.company} onChange={update('company')} />
                 </>
               )}
-              <Field label={mode === 'signup' ? 'Business email' : 'Email'} type="email" value={form.email} onChange={update('email')} />
+              <Field label={mode === 'signup' ? 'Business email' : 'Email or username'} type={mode === 'signup' ? 'email' : 'text'} value={form.email} onChange={update('email')} />
               <Field label="Password" type="password" value={form.password} onChange={update('password')} />
 
               {status === 'error' && (
