@@ -10,10 +10,16 @@ export default function CTASection() {
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="mailto:nabeel@automationgini.com"
+            href="https://crm-leads-enterprise.onrender.com/?signup=1"
             className="font-body font-semibold text-white bg-navy hover:bg-blue px-8 py-3.5 rounded-lg transition-colors"
           >
-            Get a demo
+            Sign up free
+          </a>
+          <a
+            href="https://crm-leads-enterprise.onrender.com"
+            className="font-body font-semibold text-navy border border-navy/20 hover:border-navy/40 px-8 py-3.5 rounded-lg transition-colors"
+          >
+            Sign in
           </a>
         </div>
       </div>
