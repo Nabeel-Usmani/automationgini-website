@@ -43,7 +43,7 @@ export default function Auth({ initialMode = 'signup' }) {
       if (data.success) {
         setStatus('success')
         setMessage('Account created! Redirecting you to sign in...')
-        setTimeout(() => { window.location.href = CRM_URL }, 1800)
+        setTimeout(() => { window.location.href = data.login_token ? CRM_URL + '/?login_token=' + data.login_token : CRM_URL }, 1800)
       } else {
         setStatus('error'); setMessage(data.error || 'Something went wrong.')
       }
@@ -68,7 +68,7 @@ export default function Auth({ initialMode = 'signup' }) {
       if (data.success) {
         setStatus('success')
         setMessage(`Welcome back, ${data.full_name.split(' ')[0]}! Redirecting to your dashboard...`)
-        setTimeout(() => { window.location.href = CRM_URL }, 1500)
+        setTimeout(() => { window.location.href = data.login_token ? CRM_URL + '/?login_token=' + data.login_token : CRM_URL }, 1500)
       } else {
         setStatus('error'); setMessage(data.error || 'Invalid email or password.')
       }
@@ -90,7 +90,7 @@ export default function Auth({ initialMode = 'signup' }) {
       if (data.success) {
         setStatus('success')
         setMessage(`Welcome${data.full_name ? ', ' + data.full_name.split(' ')[0] : ''}! Redirecting to your dashboard...`)
-        setTimeout(() => { window.location.href = CRM_URL }, 1500)
+        setTimeout(() => { window.location.href = data.login_token ? CRM_URL + '/?login_token=' + data.login_token : CRM_URL }, 1500)
       } else {
         setStatus('error'); setMessage(data.error || 'Google sign-in failed.')
       }
