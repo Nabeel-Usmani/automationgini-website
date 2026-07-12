@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Hero() {
   return (
     <section id="top" className="relative bg-navy overflow-hidden pt-36 pb-24 md:pt-44 md:pb-32">
@@ -31,18 +33,18 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href="https://crm-leads-enterprise.onrender.com/?signup=1"
+            <Link
+              to="/signup"
               className="font-body font-semibold text-navy bg-white hover:bg-ice px-7 py-3.5 rounded-lg transition-colors"
             >
               Sign up free
-            </a>
-            <a
-              href="https://crm-leads-enterprise.onrender.com"
+            </Link>
+            <Link
+              to="/login"
               className="font-body font-semibold text-white/90 hover:text-white border border-white/20 hover:border-white/40 px-7 py-3.5 rounded-lg transition-colors"
             >
               Sign in
-            </a>
+            </Link>
           </div>
 
           <p className="mt-8 font-mono text-xs text-white/40">
