@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function CTASection() {
   return (
     <section id="contact" className="bg-white py-24 md:py-32">
@@ -9,18 +11,18 @@ export default function CTASection() {
           See a real lead go from search result to a live AI call, in one sitting.
         </p>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="https://crm-leads-enterprise.onrender.com/?signup=1"
+          <Link
+            to="/signup"
             className="font-body font-semibold text-white bg-navy hover:bg-blue px-8 py-3.5 rounded-lg transition-colors"
           >
             Sign up free
-          </a>
-          <a
-            href="https://crm-leads-enterprise.onrender.com"
+          </Link>
+          <Link
+            to="/login"
             className="font-body font-semibold text-navy border border-navy/20 hover:border-navy/40 px-8 py-3.5 rounded-lg transition-colors"
           >
             Sign in
-          </a>
+          </Link>
         </div>
       </div>
     </section>
