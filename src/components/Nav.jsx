@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import LogoLight from '../assets/logo-light-bg.svg'
 
 export default function Nav() {
@@ -41,18 +42,18 @@ export default function Nav() {
         </div>
 
         <div className="flex items-center gap-3">
-          <a
-            href="https://crm-leads-enterprise.onrender.com"
+          <Link
+            to="/login"
             className="hidden sm:inline-block font-body text-[15px] font-semibold text-navy/80 hover:text-navy px-4 py-2 transition-colors"
           >
             Sign in
-          </a>
-          <a
-            href="https://crm-leads-enterprise.onrender.com/?signup=1"
+          </Link>
+          <Link
+            to="/signup"
             className="font-body text-[15px] font-semibold text-white bg-navy hover:bg-blue px-5 py-2.5 rounded-lg transition-colors"
           >
             Sign up free
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
