@@ -42,16 +42,16 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
+            href="https://crm-leads-enterprise.onrender.com"
             className="hidden sm:inline-block font-body text-[15px] font-semibold text-navy/80 hover:text-navy px-4 py-2 transition-colors"
           >
-            Log in
+            Sign in
           </a>
           <a
-            href="#contact"
+            href="https://crm-leads-enterprise.onrender.com/?signup=1"
             className="font-body text-[15px] font-semibold text-white bg-navy hover:bg-blue px-5 py-2.5 rounded-lg transition-colors"
           >
-            Get a demo
+            Sign up free
           </a>
         </div>
       </nav>
