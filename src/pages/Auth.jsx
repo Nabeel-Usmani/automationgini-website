@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google'
 import LogoLight from '../assets/logo-light-bg.svg'
 
 const CRM_URL = 'https://crm-leads-enterprise.onrender.com'
 const SIGNUP_API = 'https://app.automationgini.com/webhook/automationgini-web-signup'
 const LOGIN_API = 'https://app.automationgini.com/webhook/automationgini-web-login'
+const GOOGLE_AUTH_API = 'https://app.automationgini.com/webhook/automationgini-google-auth'
 
 export default function Auth({ initialMode = 'signup' }) {
   const [searchParams] = useSearchParams()
@@ -69,6 +71,28 @@ export default function Auth({ initialMode = 'signup' }) {
         setTimeout(() => { window.location.href = CRM_URL }, 1500)
       } else {
         setStatus('error'); setMessage(data.error || 'Invalid email or password.')
+      }
+    } catch {
+      setStatus('error'); setMessage("Couldn't reach the server. Try again in a moment.")
+    }
+  }
+
+  async function handleGoogleAuth(credentialResponse) {
+    if (!credentialResponse.credential) return
+    setStatus('loading')
+    try {
+      const resp = await fetch(GOOGLE_AUTH_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential: credentialResponse.credential }),
+      })
+      const data = await resp.json()
+      if (data.success) {
+        setStatus('success')
+        setMessage(`Welcome${data.full_name ? ', ' + data.full_name.split(' ')[0] : ''}! Redirecting to your dashboard...`)
+        setTimeout(() => { window.location.href = CRM_URL }, 1500)
+      } else {
+        setStatus('error'); setMessage(data.error || 'Google sign-in failed.')
       }
     } catch {
       setStatus('error'); setMessage("Couldn't reach the server. Try again in a moment.")
@@ -146,7 +170,23 @@ export default function Auth({ initialMode = 'signup' }) {
               <p className="font-body text-navy font-medium">{message}</p>
             </div>
           ) : (
-            <form onSubmit={mode === 'signup' ? handleSignup : handleSignin} className="space-y-4">
+            <>
+              <div className="flex justify-center mb-4">
+                <GoogleLogin
+                  onSuccess={handleGoogleAuth}
+                  onError={() => { setStatus('error'); setMessage('Google sign-in failed.') }}
+                  text={mode === 'signup' ? 'signup_with' : 'signin_with'}
+                  shape="rectangular"
+                  width="304"
+                />
+              </div>
+              <div className="flex items-center gap-3 mb-4 text-xs text-slate-400">
+                <span className="flex-1 h-px bg-slate-200" />
+                or
+                <span className="flex-1 h-px bg-slate-200" />
+              </div>
+
+              <form onSubmit={mode === 'signup' ? handleSignup : handleSignin} className="space-y-4">
               {mode === 'signup' && (
                 <>
                   <div className="grid grid-cols-2 gap-3">
@@ -171,6 +211,7 @@ export default function Auth({ initialMode = 'signup' }) {
                 {status === 'loading' ? 'Please wait...' : mode === 'signup' ? 'Create account' : 'Log in'}
               </button>
             </form>
+            </>
           )}
 
           {status !== 'success' && (
