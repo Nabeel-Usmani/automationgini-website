@@ -3,10 +3,11 @@ import { useSearchParams } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google'
 import LogoLight from '../assets/logo-light-bg.svg'
 
-const CRM_URL = 'https://crm-leads-enterprise.onrender.com'
-const SIGNUP_API = 'https://app.automationgini.com/webhook/automationgini-web-signup'
-const LOGIN_API = 'https://app.automationgini.com/webhook/automationgini-web-login'
-const GOOGLE_AUTH_API = 'https://app.automationgini.com/webhook/automationgini-google-auth'
+const CRM_URL = 'https://automationgini-crmv2.onrender.com'
+const API_BASE = 'https://automationgini-api.onrender.com'
+const SIGNUP_API = `${API_BASE}/auth/signup`
+const LOGIN_API = `${API_BASE}/auth/login`
+const GOOGLE_AUTH_API = `${API_BASE}/auth/google`
 
 export default function Auth({ initialMode = 'signup' }) {
   const [searchParams] = useSearchParams()
@@ -21,6 +22,12 @@ export default function Auth({ initialMode = 'signup' }) {
   })
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
+
+  function redirectToCRM(accessToken, name) {
+    setTimeout(() => {
+      window.location.href = `${CRM_URL}/auth/callback?token=${encodeURIComponent(accessToken)}`
+    }, 1200)
+  }
 
   async function handleSignup(e) {
     e.preventDefault()
@@ -37,16 +44,16 @@ export default function Auth({ initialMode = 'signup' }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           first_name: form.firstName, last_name: form.lastName,
-          company: form.company, email: form.email, password: form.password,
+          company_name: form.company, email: form.email, password: form.password,
         }),
       })
       const data = await resp.json()
-      if (data.success) {
+      if (resp.ok) {
         setStatus('success')
-        setMessage('Account created! Redirecting you to sign in...')
-        setTimeout(() => { window.location.href = data.login_token ? CRM_URL + '/?login_token=' + data.login_token : CRM_URL }, 1800)
+        setMessage('Account created! Taking you to your dashboard...')
+        redirectToCRM(data.access_token, data.full_name)
       } else {
-        setStatus('error'); setMessage(data.error || 'Something went wrong.')
+        setStatus('error'); setMessage(data.detail || 'Something went wrong.')
       }
     } catch {
       setStatus('error'); setMessage("Couldn't reach the server. Try again in a moment.")
@@ -66,12 +73,12 @@ export default function Auth({ initialMode = 'signup' }) {
         body: JSON.stringify({ email: form.email, password: form.password }),
       })
       const data = await resp.json()
-      if (data.success) {
+      if (resp.ok) {
         setStatus('success')
         setMessage(`Welcome back, ${data.full_name.split(' ')[0]}! Redirecting to your dashboard...`)
-        setTimeout(() => { window.location.href = data.login_token ? CRM_URL + '/?login_token=' + data.login_token : CRM_URL }, 1500)
+        redirectToCRM(data.access_token, data.full_name)
       } else {
-        setStatus('error'); setMessage(data.error || 'Invalid email or password.')
+        setStatus('error'); setMessage(data.detail || 'Invalid email or password.')
       }
     } catch {
       setStatus('error'); setMessage("Couldn't reach the server. Try again in a moment.")
@@ -85,15 +92,15 @@ export default function Auth({ initialMode = 'signup' }) {
       const resp = await fetch(GOOGLE_AUTH_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ credential: credentialResponse.credential, mode: accountType }),
+        body: JSON.stringify({ credential: credentialResponse.credential, account_type: accountType }),
       })
       const data = await resp.json()
-      if (data.success) {
+      if (resp.ok) {
         setStatus('success')
         setMessage(`Welcome${data.full_name ? ', ' + data.full_name.split(' ')[0] : ''}! Redirecting to your dashboard...`)
-        setTimeout(() => { window.location.href = data.login_token ? CRM_URL + '/?login_token=' + data.login_token : CRM_URL }, 1500)
+        redirectToCRM(data.access_token, data.full_name)
       } else {
-        setStatus('error'); setMessage(data.error || 'Google sign-in failed.')
+        setStatus('error'); setMessage(data.detail || 'Google sign-in failed.')
       }
     } catch {
       setStatus('error'); setMessage("Couldn't reach the server. Try again in a moment.")
