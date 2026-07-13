@@ -101,7 +101,9 @@ export default function Auth({ initialMode = 'signup' }) {
   }
 
   function switchMode(next) {
-    setMode(next); setStatus('idle'); setMessage('')
+    setMode(next)
+    if (next === 'signup') setAccountType('individual')
+    setStatus('idle'); setMessage('')
   }
 
   function switchAccountType(next) {
@@ -144,45 +146,49 @@ export default function Auth({ initialMode = 'signup' }) {
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl shadow-black/30 p-8">
-          <div className="flex justify-center gap-1 mb-5 bg-slate-50 rounded-full p-1 w-fit mx-auto">
-            <button
-              onClick={() => switchAccountType('individual')}
-              className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
-                accountType === 'individual' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Individual
-            </button>
-            <button
-              onClick={() => switchAccountType('agency_owner')}
-              className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
-                accountType === 'agency_owner' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Agency Owner
-            </button>
-            <button
-              onClick={() => switchAccountType('agent')}
-              className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
-                accountType === 'agent' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Agent
-            </button>
-          </div>
+          {mode === 'signin' && (
+            <>
+              <div className="flex justify-center gap-1 mb-5 bg-slate-50 rounded-full p-1 w-fit mx-auto">
+                <button
+                  onClick={() => switchAccountType('individual')}
+                  className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
+                    accountType === 'individual' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  Individual
+                </button>
+                <button
+                  onClick={() => switchAccountType('agency_owner')}
+                  className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
+                    accountType === 'agency_owner' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  Agency Owner
+                </button>
+                <button
+                  onClick={() => switchAccountType('agent')}
+                  className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
+                    accountType === 'agent' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  Agent
+                </button>
+              </div>
 
-          {accountType === 'agent' && (
-            <p className="text-center text-sm text-slate mb-5">
-              Use the credentials your agency admin gave you.
-            </p>
-          )}
-          {accountType === 'agency_owner' && (
-            <p className="text-center text-sm text-slate mb-5">
-              Sign in with the credentials AutomationGini provided you.
-            </p>
+              {accountType === 'agent' && (
+                <p className="text-center text-sm text-slate mb-5">
+                  Use the credentials your agency admin gave you.
+                </p>
+              )}
+              {accountType === 'agency_owner' && (
+                <p className="text-center text-sm text-slate mb-5">
+                  Sign in with the credentials AutomationGini provided you.
+                </p>
+              )}
+            </>
           )}
 
-          {accountType === 'individual' ? (
+          {accountType === 'individual' && (
             <div className="grid grid-cols-2 gap-2 mb-6">
               <button
                 onClick={() => switchMode('signin')}
@@ -201,9 +207,9 @@ export default function Auth({ initialMode = 'signup' }) {
                 Sign Up
               </button>
             </div>
-          ) : null}
+          )}
 
-          {accountType === 'individual' && mode === 'signup' && (
+          {mode === 'signup' && (
             <p className="text-center text-sm text-slate mb-5">
               Free plan — 100 leads, 5 voice demos, 5 chatbot demos. No card required.
             </p>
