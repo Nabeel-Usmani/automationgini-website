@@ -11,7 +11,7 @@ const GOOGLE_AUTH_API = 'https://app.automationgini.com/webhook/automationgini-g
 export default function Auth({ initialMode = 'signup' }) {
   const [searchParams] = useSearchParams()
   const urlMode = searchParams.get('mode')
-  const [accountType, setAccountType] = useState('admin') // 'admin' | 'agent'
+  const [accountType, setAccountType] = useState('individual') // 'individual' | 'agency_owner' | 'agent'
   const [mode, setMode] = useState(urlMode === 'signin' || urlMode === 'signup' ? urlMode : initialMode)
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [message, setMessage] = useState('')
@@ -106,7 +106,7 @@ export default function Auth({ initialMode = 'signup' }) {
 
   function switchAccountType(next) {
     setAccountType(next)
-    if (next === 'agent') setMode('signin')
+    if (next === 'agent' || next === 'agency_owner') setMode('signin')
     setStatus('idle'); setMessage('')
   }
 
@@ -146,16 +146,24 @@ export default function Auth({ initialMode = 'signup' }) {
         <div className="bg-white rounded-2xl shadow-2xl shadow-black/30 p-8">
           <div className="flex justify-center gap-1 mb-5 bg-slate-50 rounded-full p-1 w-fit mx-auto">
             <button
-              onClick={() => switchAccountType('admin')}
-              className={`font-body font-semibold text-xs px-4 py-1.5 rounded-full transition-colors ${
-                accountType === 'admin' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
+              onClick={() => switchAccountType('individual')}
+              className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
+                accountType === 'individual' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Individual
+            </button>
+            <button
+              onClick={() => switchAccountType('agency_owner')}
+              className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
+                accountType === 'agency_owner' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               Agency Owner
             </button>
             <button
               onClick={() => switchAccountType('agent')}
-              className={`font-body font-semibold text-xs px-4 py-1.5 rounded-full transition-colors ${
+              className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
                 accountType === 'agent' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
@@ -163,11 +171,18 @@ export default function Auth({ initialMode = 'signup' }) {
             </button>
           </div>
 
-          {accountType === 'agent' ? (
+          {accountType === 'agent' && (
             <p className="text-center text-sm text-slate mb-5">
               Use the credentials your agency admin gave you.
             </p>
-          ) : (
+          )}
+          {accountType === 'agency_owner' && (
+            <p className="text-center text-sm text-slate mb-5">
+              Sign in with the credentials AutomationGini provided you.
+            </p>
+          )}
+
+          {accountType === 'individual' ? (
             <div className="grid grid-cols-2 gap-2 mb-6">
               <button
                 onClick={() => switchMode('signin')}
@@ -186,9 +201,9 @@ export default function Auth({ initialMode = 'signup' }) {
                 Sign Up
               </button>
             </div>
-          )}
+          ) : null}
 
-          {accountType === 'admin' && mode === 'signup' && (
+          {accountType === 'individual' && mode === 'signup' && (
             <p className="text-center text-sm text-slate mb-5">
               Free plan — 100 leads, 5 voice demos, 5 chatbot demos. No card required.
             </p>
@@ -246,7 +261,7 @@ export default function Auth({ initialMode = 'signup' }) {
             </>
           )}
 
-          {status !== 'success' && accountType === 'admin' && (
+          {status !== 'success' && accountType === 'individual' && (
             <p className="text-center text-sm text-slate mt-5">
               {mode === 'signup' ? (
                 <>Already have an account?{' '}
