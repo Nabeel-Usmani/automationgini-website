@@ -3,7 +3,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import Home from './pages/Home'
 import Auth from './pages/Auth'
 
-const GOOGLE_CLIENT_ID = 'REPLACE_WITH_GOOGLE_CLIENT_ID'
+const GOOGLE_CLIENT_ID = '31181968054-ta74c5q9baeqqkrb636g7iauoa612f2c.apps.googleusercontent.com'
 
 export default function App() {
   return (
