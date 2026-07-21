@@ -17,7 +17,7 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white pt-20 pb-10 border-t border-navy/[0.06]">
+    <footer className="bg-white pt-24 pb-10 border-t border-navy/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-navy/[0.06]">
           <div>
