@@ -120,25 +120,25 @@ export default function Auth({ initialMode = 'signup' }) {
   }
 
   return (
-    <div className="min-h-screen bg-navy relative overflow-hidden flex items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-ice relative overflow-hidden flex items-center justify-center px-6 py-12">
       {/* Ambient glow, matching hero */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -right-40 w-[560px] h-[560px] rounded-full bg-blue/20 blur-[120px]" />
-        <div className="absolute bottom-0 -left-20 w-[420px] h-[420px] rounded-full bg-amber/10 blur-[100px]" />
+        <div className="absolute -top-32 -right-40 w-[560px] h-[560px] rounded-full bg-blue/[0.08] blur-[120px]" />
+        <div className="absolute bottom-0 -left-20 w-[420px] h-[420px] rounded-full bg-amber/[0.06] blur-[100px]" />
       </div>
 
       {/* Decorative blurred product backdrop */}
-      <div className="pointer-events-none absolute inset-0 blur-md opacity-40">
-        <div className="h-16 bg-navy-deep flex items-center gap-7 px-8">
-          {[1, 2, 3, 4].map((i) => <div key={i} className="w-20 h-3.5 rounded bg-white/15" />)}
+      <div className="pointer-events-none absolute inset-0 blur-md opacity-30">
+        <div className="h-16 bg-white flex items-center gap-7 px-8">
+          {[1, 2, 3, 4].map((i) => <div key={i} className="w-20 h-3.5 rounded bg-navy/10" />)}
         </div>
         <div className="flex gap-5 p-8">
-          <div className="flex-1 max-w-[220px] bg-white rounded-2xl p-5 space-y-3">
+          <div className="flex-1 max-w-[220px] bg-white rounded-2xl p-5 space-y-3 border border-navy/[0.06]">
             <div className="h-3 w-3/5 bg-slate-200 rounded" />
             <div className="h-3 w-full bg-slate-200 rounded" />
             <div className="h-3 w-full bg-slate-200 rounded" />
           </div>
-          <div className="flex-[2] bg-white rounded-2xl p-5">
+          <div className="flex-[2] bg-white rounded-2xl p-5 border border-navy/[0.06]">
             <div className="font-mono text-4xl font-bold text-blue mb-2">116</div>
             <div className="h-3 w-2/5 bg-slate-200 rounded mb-5" />
             <div className="h-3 w-full bg-amber/20 rounded" />
@@ -152,7 +152,7 @@ export default function Auth({ initialMode = 'signup' }) {
           <img src={LogoLight} alt="AutomationGini" className="h-9" />
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl shadow-black/30 p-8">
+        <div className="bg-white rounded-2xl shadow-2xl shadow-navy/[0.12] p-8">
           {mode === 'signin' && (
             <>
               <div className="flex justify-center gap-1 mb-5 bg-slate-50 rounded-full p-1 w-fit mx-auto">
