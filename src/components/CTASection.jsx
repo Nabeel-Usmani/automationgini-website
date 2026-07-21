@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function CTASection() {
   return (
-    <section id="contact" className="bg-white py-24 md:py-32">
+    <section id="contact" className="bg-ice py-24 md:py-32">
       <div className="max-w-4xl mx-auto px-6 lg:px-10 text-center">
         <h2 className="font-display font-semibold text-3xl md:text-5xl text-navy tracking-tight leading-[1.1]">
           Let&rsquo;s build your pipeline.
