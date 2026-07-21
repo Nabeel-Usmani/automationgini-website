@@ -19,7 +19,7 @@ const points = [
 
 export default function TeamSection() {
   return (
-    <section className="bg-ice py-24 md:py-32">
+    <section className="bg-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-[0.9fr_1.1fr] gap-16 items-start">
         <div>
           <p className="font-mono text-xs tracking-widest text-blue uppercase mb-3">Built for agencies</p>
@@ -34,7 +34,7 @@ export default function TeamSection() {
 
         <div className="grid sm:grid-cols-2 gap-5">
           {points.map((p) => (
-            <div key={p.title} className="bg-white rounded-xl p-6 border border-navy/[0.06]">
+            <div key={p.title} className="bg-ice/60 rounded-xl p-6 border border-navy/[0.06] hover:bg-ice transition-colors">
               <h3 className="font-body font-semibold text-navy mb-2">{p.title}</h3>
               <p className="font-body text-sm text-slate leading-relaxed">{p.desc}</p>
             </div>
