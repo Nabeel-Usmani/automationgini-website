@@ -24,7 +24,7 @@ const products = [
 
 export default function Upsells() {
   return (
-    <section id="addons" className="bg-ice py-28 md:py-40">
+    <section id="addons" className="bg-white py-28 md:py-40">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="max-w-2xl mb-20 md:mb-24">
           <p className="font-mono text-xs tracking-widest text-amber uppercase mb-3">Beyond the demo</p>
@@ -40,8 +40,8 @@ export default function Upsells() {
               delay={i * 80}
               className={`rounded-3xl p-9 border transition-all ${
                 p.featured
-                  ? 'bg-white border-amber/30 shadow-xl shadow-amber/[0.1] md:-translate-y-3'
-                  : 'bg-white/60 border-navy/[0.08] hover:bg-white hover:border-navy/15'
+                  ? 'bg-ice border-amber/30 shadow-xl shadow-amber/[0.1] md:-translate-y-3'
+                  : 'bg-ice/50 border-navy/[0.08] hover:bg-ice hover:border-navy/15'
               }`}
             >
               {p.featured && (
