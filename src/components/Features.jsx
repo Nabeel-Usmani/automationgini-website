@@ -1,3 +1,5 @@
+import Reveal from './Reveal'
+
 const features = [
   {
     title: 'Lead Discovery',
@@ -25,17 +27,18 @@ export default function Features() {
   return (
     <section id="features" className="bg-white py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="max-w-2xl mb-16">
+        <Reveal className="max-w-2xl mb-16">
           <p className="font-mono text-xs tracking-widest text-blue uppercase mb-3">What&rsquo;s inside</p>
           <h2 className="font-display font-semibold text-3xl md:text-4xl text-navy tracking-tight">
             Every tool a lead-gen agency actually needs, in one place.
           </h2>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {features.map((f) => (
-            <div
+          {features.map((f, i) => (
+            <Reveal
               key={f.title}
+              delay={i * 80}
               className="group border border-navy/10 rounded-2xl p-8 hover:border-blue/30 hover:shadow-lg hover:shadow-blue/[0.06] transition-all"
             >
               <h3 className="font-display font-semibold text-xl text-navy mb-3">{f.title}</h3>
@@ -50,7 +53,7 @@ export default function Features() {
                   </span>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
