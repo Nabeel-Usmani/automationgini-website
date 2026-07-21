@@ -21,7 +21,7 @@ const points = [
 
 export default function TeamSection() {
   return (
-    <section className="bg-white py-28 md:py-40">
+    <section className="bg-ice py-28 md:py-40">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-16 lg:gap-20 items-start">
         <Reveal>
           <p className="font-mono text-xs tracking-widest text-blue uppercase mb-3">Built for agencies</p>
@@ -36,7 +36,7 @@ export default function TeamSection() {
 
         <div className="grid sm:grid-cols-2 gap-5">
           {points.map((p, i) => (
-            <Reveal key={p.title} delay={i * 60} className="bg-ice/60 rounded-2xl p-7 border border-navy/[0.06] hover:bg-ice transition-colors">
+            <Reveal key={p.title} delay={i * 60} className="bg-white/70 rounded-2xl p-7 border border-navy/[0.06] hover:bg-white transition-colors">
               <h3 className="font-body font-semibold text-navy text-lg mb-2.5">{p.title}</h3>
               <p className="font-body text-sm text-slate leading-relaxed">{p.desc}</p>
             </Reveal>
