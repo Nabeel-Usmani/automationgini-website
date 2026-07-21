@@ -1,4 +1,4 @@
-import LogoDark from '../assets/logo-dark-bg.svg'
+import LogoLight from '../assets/logo-light-bg.svg'
 
 const columns = [
   {
@@ -17,25 +17,25 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-deep pt-20 pb-10">
+    <footer className="bg-white pt-20 pb-10 border-t border-navy/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-white/10">
+        <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-navy/[0.06]">
           <div>
-            <img src={LogoDark} alt="AutomationGini" className="h-8 mb-4" />
-            <p className="font-body text-sm text-white/50 max-w-xs leading-relaxed">
+            <img src={LogoLight} alt="AutomationGini" className="h-8 mb-4" />
+            <p className="font-body text-sm text-slate/70 max-w-xs leading-relaxed">
               AI-powered lead generation and client automation, built for agencies.
             </p>
           </div>
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="font-body font-semibold text-white text-sm mb-4">{col.title}</h4>
+              <h4 className="font-body font-semibold text-navy text-sm mb-4">{col.title}</h4>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l}>
                     <a
                       href="#"
-                      className="font-body text-sm text-white/50 hover:text-white/80 transition-colors"
+                      className="font-body text-sm text-slate/70 hover:text-navy transition-colors"
                     >
                       {l}
                     </a>
@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8">
-          <p className="font-mono text-xs text-white/30">
+          <p className="font-mono text-xs text-slate/50">
             &copy; 2026 AutomationGini. All rights reserved.
           </p>
         </div>
