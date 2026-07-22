@@ -4,7 +4,7 @@ const sections = [
   {
     heading: '1. Agreement to Terms',
     paragraphs: [
-      'These Terms of Service ("Terms") govern access to and use of the AutomationGini platform (the "Platform"), operated by [INSERT LEGAL ENTITY NAME] ("AutomationGini," "we," "us"). By creating an account or otherwise using the Platform, you ("Customer," "you") agree to be bound by these Terms.',
+      'These Terms of Service ("Terms") govern access to and use of the AutomationGini platform (the "Platform"), operated by AutomationGini team. By creating an account or otherwise using the Platform, you ("Customer," "you") agree to be bound by these Terms.',
       'If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have authority to bind that entity, in which case "you" refers to that entity.',
     ],
   },
@@ -90,7 +90,7 @@ const sections = [
   {
     heading: '12. Governing Law and Disputes',
     paragraphs: [
-      'These Terms are governed by the laws of [INSERT JURISDICTION], without regard to conflict-of-law principles.',
+      'These Terms are governed by the laws of EU/US, without regard to conflict-of-law principles.',
     ],
   },
   {
@@ -102,7 +102,7 @@ const sections = [
   {
     heading: '14. Contact',
     paragraphs: [
-      'Questions about these Terms can be directed to [INSERT CONTACT EMAIL].',
+      'Questions about these Terms can be directed to support@automationgini.com',
     ],
   },
 ]
@@ -111,7 +111,7 @@ export default function Terms() {
   return (
     <LegalPageLayout
       title="Terms of Service"
-      lastUpdated="[INSERT DATE]"
+      lastUpdated="22-July-2026"
       notice="This page is a draft pending final legal review and has not yet been finalized. Bracketed placeholders will be completed before these terms are considered final."
       sections={sections}
     />
