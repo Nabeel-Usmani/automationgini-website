@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import LogoLight from '../assets/logo-light-bg.svg'
 
 const columns = [
@@ -13,6 +14,11 @@ const columns = [
     title: 'Company',
     links: ['About', 'Contact'],
   },
+]
+
+const legalLinks = [
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms of Service', to: '/terms' },
 ]
 
 export default function Footer() {
@@ -50,6 +56,17 @@ export default function Footer() {
           <p className="font-mono text-xs text-slate/50">
             &copy; 2026 AutomationGini. All rights reserved.
           </p>
+          <div className="flex items-center gap-6">
+            {legalLinks.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="font-mono text-xs text-slate/50 hover:text-navy transition-colors"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
