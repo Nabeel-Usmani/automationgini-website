@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import LogoLight from '../assets/logo-light-bg.svg'
+import LogoLight from '../assets/Logo.jpg'
 
 const columns = [
   {
@@ -27,7 +27,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-navy/[0.06]">
           <div>
-            <img src={LogoLight} alt="AutomationGini" className="h-8 mb-4" />
+            <img src={LogoLight} alt="AutomationGini" className="h-8 w-auto mb-4" />
             <p className="font-body text-sm text-slate/70 max-w-xs leading-relaxed">
               AI-powered lead generation and client automation, built for agencies.
             </p>
