@@ -26,7 +26,7 @@ export default function Auth({ initialMode = 'signup' }) {
   function redirectToCRM(accessToken, name) {
     setTimeout(() => {
       window.location.href = `${CRM_URL}/auth/callback?token=${encodeURIComponent(accessToken)}`
-    }, 1200)
+    }, 400)
   }
 
   async function handleSignup(e) {
