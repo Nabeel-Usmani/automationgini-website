@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import LogoIcon from '../assets/logo-icon.png'
+import LogoIconWhite from '../assets/logo-icon-white.png'
 
 const links = [
   { label: 'Features', to: '/features' },
@@ -26,6 +27,10 @@ export default function Nav() {
     setMenuOpen(false)
   }, [location.pathname])
 
+  // The homepage opens on a dark hero — float light-colored nav text over it
+  // until the user scrolls (or opens the mobile menu, which is always solid white).
+  const overDark = location.pathname === '/' && !scrolled && !menuOpen
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -34,8 +39,8 @@ export default function Nav() {
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 h-20">
         <Link to="/" className="flex items-center gap-2">
-          <img src={LogoIcon} alt="" width="35" height="40" className="h-8 md:h-9 w-auto" />
-          <span className="font-display font-semibold text-xl md:text-2xl tracking-tight text-navy">
+          <img src={overDark ? LogoIconWhite : LogoIcon} alt="" width="35" height="40" className="h-8 md:h-9 w-auto" />
+          <span className={`font-display font-semibold text-xl md:text-2xl tracking-tight transition-colors ${overDark ? 'text-white' : 'text-navy'}`}>
             Automation<span className="text-amber">Gini</span>
           </span>
         </Link>
@@ -47,7 +52,9 @@ export default function Nav() {
               to={l.to}
               className={({ isActive }) =>
                 `relative font-body text-[15px] font-medium transition-colors py-1 ${
-                  isActive ? 'text-navy' : 'text-navy/70 hover:text-navy'
+                  isActive
+                    ? overDark ? 'text-white' : 'text-navy'
+                    : overDark ? 'text-white/70 hover:text-white' : 'text-navy/70 hover:text-navy'
                 }`
               }
             >
@@ -70,7 +77,9 @@ export default function Nav() {
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
             to="/login"
-            className="hidden sm:inline-block font-body text-[15px] font-semibold text-navy/80 hover:text-navy px-4 py-2 transition-colors"
+            className={`hidden sm:inline-block font-body text-[15px] font-semibold px-4 py-2 transition-colors ${
+              overDark ? 'text-white/85 hover:text-white' : 'text-navy/80 hover:text-navy'
+            }`}
           >
             Sign in
           </Link>
@@ -89,15 +98,15 @@ export default function Nav() {
           >
             <motion.span
               animate={menuOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
-              className="w-5 h-[1.5px] bg-navy block origin-center"
+              className={`w-5 h-[1.5px] block origin-center transition-colors ${overDark ? 'bg-white' : 'bg-navy'}`}
             />
             <motion.span
               animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="w-5 h-[1.5px] bg-navy block"
+              className={`w-5 h-[1.5px] block transition-colors ${overDark ? 'bg-white' : 'bg-navy'}`}
             />
             <motion.span
               animate={menuOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
-              className="w-5 h-[1.5px] bg-navy block origin-center"
+              className={`w-5 h-[1.5px] block origin-center transition-colors ${overDark ? 'bg-white' : 'bg-navy'}`}
             />
           </button>
         </div>
