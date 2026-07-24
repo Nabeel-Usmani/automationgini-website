@@ -25,6 +25,11 @@ body {
   background: #ffffff;
 }
 
+::selection {
+  background: var(--color-amber);
+  color: var(--color-navy-deep);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

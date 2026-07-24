@@ -1,27 +1,20 @@
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import TrustBar from '../components/TrustBar'
-import Pipeline from '../components/Pipeline'
-import Features from '../components/Features'
-import NicheShowcase from '../components/NicheShowcase'
-import Upsells from '../components/Upsells'
-import TeamSection from '../components/TeamSection'
+import PipelineTeaser from '../components/PipelineTeaser'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
+import PageTransition from '../components/PageTransition'
 
 export default function Home() {
   return (
-    <div className="font-body">
+    <PageTransition className="font-body">
       <Nav />
       <Hero />
       <TrustBar />
-      <Pipeline />
-      <Features />
-      <NicheShowcase />
-      <Upsells />
-      <TeamSection />
+      <PipelineTeaser />
       <CTASection />
       <Footer />
-    </div>
+    </PageTransition>
   )
 }

@@ -2,19 +2,22 @@ import Reveal from './Reveal'
 
 const products = [
   {
+    id: 'voice-agent-build',
     price: '$50',
     period: 'one-time',
     title: 'Voice Agent Build',
-    desc: 'A permanent, production-ready inbound receptionist — built on the client\u2019s own account, no ongoing cost to you.',
+    desc: 'A permanent, production-ready inbound receptionist — built on the client’s own account, no ongoing cost to you.',
   },
   {
-    price: '$75\u2013150',
+    id: 'website-build',
+    price: '$75–150',
     period: 'one-time',
     title: 'Website Build',
     desc: 'The same site they previewed for free, delivered for real — static HTML or a live React build.',
     featured: true,
   },
   {
+    id: 'ai-chatbot',
     price: '$29',
     period: '/month',
     title: 'AI Chatbot',
@@ -38,7 +41,8 @@ export default function Upsells() {
             <Reveal
               key={p.title}
               delay={i * 80}
-              className={`rounded-3xl p-9 border transition-all ${
+              id={p.id}
+              className={`rounded-3xl p-9 border transition-all scroll-mt-28 ${
                 p.featured
                   ? 'bg-ice border-amber/30 shadow-xl shadow-amber/[0.1] md:-translate-y-3'
                   : 'bg-ice/50 border-navy/[0.08] hover:bg-ice hover:border-navy/15'

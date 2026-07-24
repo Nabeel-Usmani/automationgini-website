@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const CHAT_API = 'https://app.automationgini.com/webhook/support-chat'
+export const OPEN_CHAT_EVENT = 'automationgini:open-chat'
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
@@ -14,6 +15,12 @@ export default function ChatWidget() {
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight
   }, [messages, loading])
+
+  useEffect(() => {
+    const onOpenRequest = () => setOpen(true)
+    window.addEventListener(OPEN_CHAT_EVENT, onOpenRequest)
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, onOpenRequest)
+  }, [])
 
   async function send() {
     const text = input.trim()

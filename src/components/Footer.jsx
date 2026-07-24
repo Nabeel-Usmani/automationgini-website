@@ -4,15 +4,27 @@ import LogoIcon from '../assets/logo-icon.png'
 const columns = [
   {
     title: 'Product',
-    links: ['Lead Discovery', 'Voice Demos', 'Website Builder', 'AI Chatbot'],
+    links: [
+      { label: 'Lead Discovery', to: '/features#lead-discovery' },
+      { label: 'Voice Demos', to: '/features#ai-voice-demos' },
+      { label: 'Website Builder', to: '/features#website-builder' },
+      { label: 'AI Chatbot', to: '/features#ai-chatbot' },
+    ],
   },
   {
     title: 'Add-ons',
-    links: ['Voice Agent Build', 'Website Build', 'Chatbot Subscription'],
+    links: [
+      { label: 'Voice Agent Build', to: '/pricing#voice-agent-build' },
+      { label: 'Website Build', to: '/pricing#website-build' },
+      { label: 'Chatbot Subscription', to: '/pricing#ai-chatbot' },
+    ],
   },
   {
     title: 'Company',
-    links: ['About', 'Contact'],
+    links: [
+      { label: 'About', to: '/about' },
+      { label: 'Contact', to: '/contact' },
+    ],
   },
 ]
 
@@ -27,12 +39,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-navy/[0.06]">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <Link to="/" className="flex items-center gap-2 mb-4 w-fit">
               <img src={LogoIcon} alt="" className="h-8 w-auto" />
               <span className="font-display font-semibold text-xl tracking-tight text-navy">
                 Automation<span className="text-amber">Gini</span>
               </span>
-            </div>
+            </Link>
             <p className="font-body text-sm text-slate/70 max-w-xs leading-relaxed">
               AI-powered lead generation and client automation, built for agencies.
             </p>
@@ -43,13 +55,13 @@ export default function Footer() {
               <h4 className="font-body font-semibold text-navy text-sm mb-4">{col.title}</h4>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#"
+                  <li key={l.label}>
+                    <Link
+                      to={l.to}
                       className="font-body text-sm text-slate/70 hover:text-navy transition-colors"
                     >
-                      {l}
-                    </a>
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -1,5 +1,15 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import heroVideo from '../assets/hero-video.mp4'
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+}
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+}
 
 export default function Hero() {
   return (
@@ -19,14 +29,19 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/75 to-white" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-40 pb-28 md:pt-52 md:pb-40">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-40 pb-28 md:pt-52 md:pb-40"
+      >
         <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-navy/10 rounded-full px-4 py-1.5 mb-8 shadow-sm">
+          <motion.div variants={item} className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-navy/10 rounded-full px-4 py-1.5 mb-8 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
             <span className="font-mono text-xs tracking-wide text-slate">AI-powered lead generation</span>
-          </div>
+          </motion.div>
 
-          <h1 className="font-display font-semibold text-[3rem] leading-[1.02] md:text-[5.5rem] md:leading-[0.98] text-navy tracking-tight">
+          <motion.h1 variants={item} className="font-display font-semibold text-[3rem] leading-[1.02] md:text-[5.5rem] md:leading-[0.98] text-navy tracking-tight">
             Find the leads.
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-amber">
@@ -34,35 +49,35 @@ export default function Hero() {
             </span>
             <br />
             Close the deal.
-          </h1>
+          </motion.h1>
 
-          <p className="mt-8 font-body text-xl text-slate max-w-2xl leading-relaxed">
+          <motion.p variants={item} className="mt-8 font-body text-xl text-slate max-w-2xl leading-relaxed">
             Discover real local businesses, place a live AI voice call or drop them into a chat —
             right from the lead card. See it work before you ever pitch it.
-          </p>
+          </motion.p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/signup"
-              className="font-body font-semibold text-white bg-navy hover:bg-blue px-8 py-4 rounded-lg transition-colors text-lg"
+              className="font-body font-semibold text-white bg-navy hover:bg-blue px-8 py-4 rounded-lg transition-all text-lg hover:scale-[1.03] active:scale-[0.98]"
             >
               Sign up free
             </Link>
             <Link
               to="/login"
-              className="font-body font-semibold text-navy/80 hover:text-navy border border-navy/15 hover:border-navy/30 px-8 py-4 rounded-lg transition-colors text-lg"
+              className="font-body font-semibold text-navy/80 hover:text-navy border border-navy/15 hover:border-navy/30 px-8 py-4 rounded-lg transition-all text-lg hover:scale-[1.03] active:scale-[0.98]"
             >
               Sign in
             </Link>
-          </div>
+          </motion.div>
 
-          <p className="mt-8 font-mono text-xs text-slate/60">
+          <motion.p variants={item} className="mt-8 font-mono text-xs text-slate/60">
             No card required &middot; Built for lead-gen agencies
-          </p>
+          </motion.p>
         </div>
 
         {/* Signature live product card - now a floating panel below the headline, editorial layout */}
-        <div className="mt-20 md:mt-28 max-w-2xl md:ml-auto">
+        <motion.div variants={item} className="mt-20 md:mt-28 max-w-2xl md:ml-auto">
           <div className="relative bg-white border border-navy/10 rounded-2xl shadow-2xl shadow-navy/[0.1] overflow-hidden">
             <div className="flex items-center justify-between px-5 py-4 border-b border-navy/[0.06] bg-ice/50">
               <div>
@@ -131,8 +146,8 @@ export default function Hero() {
             <p className="font-mono text-[10px] text-slate/50 uppercase tracking-wide">Time to first call</p>
             <p className="font-display font-semibold text-navy">&lt;15 sec</p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

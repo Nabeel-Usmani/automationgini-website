@@ -2,26 +2,30 @@ import Reveal from './Reveal'
 
 const features = [
   {
+    id: 'lead-discovery',
     title: 'Lead Discovery',
     desc: 'Search by niche and city, queue multiple cities at once, and get real verified contact data — not scraped guesses.',
     tags: ['Google Maps grid search', 'Phone recovery', 'Country & city aware'],
     image: 'https://images.pexels.com/photos/22775411/pexels-photo-22775411.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
   {
+    id: 'ai-voice-demos',
     title: 'AI Voice Demos',
     desc: 'A real outbound call, personalized to that business, in English or a live bilingual router across 9 languages.',
     tags: ['Live outbound calls', 'Bilingual routing', 'Built from real site content'],
     image: 'https://images.pexels.com/photos/8682773/pexels-photo-8682773.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
   {
+    id: 'website-builder',
     title: 'Website Builder',
     desc: 'A genuine multi-page site generated from their real reviews and niche — preview it live before anyone pays.',
     tags: ['Free live preview', 'HTML or React', 'ZIP export'],
     image: 'https://images.pexels.com/photos/26694146/pexels-photo-26694146.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
   {
+    id: 'ai-chatbot',
     title: 'AI Chatbot',
-    desc: 'A widget that actually talks to visitors, remembers the conversation, and never invents pricing it can\u2019t verify.',
+    desc: 'A widget that actually talks to visitors, remembers the conversation, and never invents pricing it can’t verify.',
     tags: ['Real conversation memory', 'Works on any site', 'Editable live'],
     image: 'https://images.pexels.com/photos/7342998/pexels-photo-7342998.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
@@ -43,7 +47,8 @@ export default function Features() {
             <Reveal
               key={f.title}
               delay={i * 80}
-              className="group relative border border-navy/10 rounded-3xl overflow-hidden hover:border-blue/30 hover:shadow-xl hover:shadow-blue/[0.06] transition-all"
+              id={f.id}
+              className="group relative border border-navy/10 rounded-3xl overflow-hidden hover:border-blue/30 hover:shadow-xl hover:shadow-blue/[0.06] transition-all scroll-mt-28"
             >
               <div className="relative h-56 overflow-hidden">
                 <img

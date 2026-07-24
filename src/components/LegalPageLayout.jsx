@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import PageTransition from './PageTransition'
 
 export default function LegalPageLayout({ title, lastUpdated, notice, sections }) {
   return (
-    <div className="font-body bg-white">
+    <PageTransition className="font-body bg-white">
       <Nav />
 
       <div className="max-w-3xl mx-auto px-6 lg:px-10 pt-36 pb-24">
@@ -76,6 +77,6 @@ export default function LegalPageLayout({ title, lastUpdated, notice, sections }
       </div>
 
       <Footer />
-    </div>
+    </PageTransition>
   )
 }

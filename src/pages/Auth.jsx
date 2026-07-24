@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google'
-import LogoLight from '../assets/logo-light-bg.svg'
+import LogoIcon from '../assets/logo-icon.png'
 
 const CRM_URL = 'https://crm.automationgini.com'
 const API_BASE = 'https://api.automationgini.com'
@@ -148,8 +148,11 @@ export default function Auth({ initialMode = 'signup' }) {
 
       {/* Auth card */}
       <div className="relative z-10 w-full max-w-md">
-        <div className="flex justify-center mb-7">
-          <img src={LogoLight} alt="AutomationGini" className="h-9" />
+        <div className="flex items-center justify-center gap-2 mb-7">
+          <img src={LogoIcon} alt="" className="h-8 w-auto" />
+          <span className="font-display font-semibold text-xl tracking-tight text-navy">
+            Automation<span className="text-amber">Gini</span>
+          </span>
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl shadow-navy/[0.12] p-8">
