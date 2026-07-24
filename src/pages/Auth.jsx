@@ -23,9 +23,13 @@ export default function Auth({ initialMode = 'signup' }) {
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
 
-  function redirectToCRM(accessToken, name) {
+  function redirectToCRM() {
+    // The login/signup/google requests below set a shared session cookie
+    // (credentials: 'include'), scoped to the whole automationgini.com
+    // domain family - the CRM already recognizes it, no token in the URL
+    // needed anymore.
     setTimeout(() => {
-      window.location.href = `${CRM_URL}/auth/callback?token=${encodeURIComponent(accessToken)}`
+      window.location.href = `${CRM_URL}/dashboard`
     }, 400)
   }
 
@@ -41,6 +45,7 @@ export default function Auth({ initialMode = 'signup' }) {
     try {
       const resp = await fetch(SIGNUP_API, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           first_name: form.firstName, last_name: form.lastName,
@@ -51,7 +56,7 @@ export default function Auth({ initialMode = 'signup' }) {
       if (resp.ok) {
         setStatus('success')
         setMessage('Account created! Taking you to your dashboard...')
-        redirectToCRM(data.access_token, data.full_name)
+        redirectToCRM()
       } else {
         setStatus('error'); setMessage(data.detail || 'Something went wrong.')
       }
@@ -69,6 +74,7 @@ export default function Auth({ initialMode = 'signup' }) {
     try {
       const resp = await fetch(LOGIN_API, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email, password: form.password }),
       })
@@ -76,7 +82,7 @@ export default function Auth({ initialMode = 'signup' }) {
       if (resp.ok) {
         setStatus('success')
         setMessage(`Welcome back, ${data.full_name.split(' ')[0]}! Redirecting to your dashboard...`)
-        redirectToCRM(data.access_token, data.full_name)
+        redirectToCRM()
       } else {
         setStatus('error'); setMessage(data.detail || 'Invalid email or password.')
       }
@@ -91,6 +97,7 @@ export default function Auth({ initialMode = 'signup' }) {
     try {
       const resp = await fetch(GOOGLE_AUTH_API, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential: credentialResponse.credential, account_type: accountType }),
       })
@@ -98,7 +105,7 @@ export default function Auth({ initialMode = 'signup' }) {
       if (resp.ok) {
         setStatus('success')
         setMessage(`Welcome${data.full_name ? ', ' + data.full_name.split(' ')[0] : ''}! Redirecting to your dashboard...`)
-        redirectToCRM(data.access_token, data.full_name)
+        redirectToCRM()
       } else {
         setStatus('error'); setMessage(data.detail || 'Google sign-in failed.')
       }
