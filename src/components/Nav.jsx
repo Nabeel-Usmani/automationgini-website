@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import LogoLight from '../assets/Logo.jpg'
+import LogoIcon from '../assets/logo-icon.png'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -25,8 +25,11 @@ export default function Nav() {
       }`}
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 h-20">
-        <a href="#top" className="flex items-center">
-          <img src={LogoLight} alt="AutomationGini" width="50" height="36" className="h-8 md:h-9 w-auto" />
+        <a href="#top" className="flex items-center gap-2">
+          <img src={LogoIcon} alt="" width="35" height="40" className="h-8 md:h-9 w-auto" />
+          <span className="font-display font-semibold text-xl md:text-2xl tracking-tight text-navy">
+            Automation<span className="text-amber">Gini</span>
+          </span>
         </a>
 
         <div className="hidden md:flex items-center gap-9">
