@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import PageTransition from './PageTransition'
+import Reveal from './Reveal'
 
 export default function LegalPageLayout({ title, lastUpdated, notice, sections }) {
   return (
@@ -22,7 +23,7 @@ export default function LegalPageLayout({ title, lastUpdated, notice, sections }
 
         <div className="space-y-10">
           {sections.map((section) => (
-            <div key={section.heading}>
+            <Reveal key={section.heading}>
               <h2 className="font-display font-semibold text-2xl text-navy tracking-tight mb-3">
                 {section.heading}
               </h2>
@@ -65,7 +66,7 @@ export default function LegalPageLayout({ title, lastUpdated, notice, sections }
               {(section.paragraphs2 || []).map((p, i) => (
                 <p key={i} className="font-body text-slate leading-relaxed mb-3">{p}</p>
               ))}
-            </div>
+            </Reveal>
           ))}
         </div>
 

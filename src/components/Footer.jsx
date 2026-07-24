@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import LogoIcon from '../assets/logo-icon.png'
+import Reveal from './Reveal'
 
 const columns = [
   {
@@ -36,7 +37,7 @@ const legalLinks = [
 export default function Footer() {
   return (
     <footer className="bg-white pt-24 pb-10 border-t border-navy/[0.06]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <Reveal className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-navy/[0.06]">
           <div>
             <Link to="/" className="flex items-center gap-2 mb-4 w-fit">
@@ -85,7 +86,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </Reveal>
     </footer>
   )
 }

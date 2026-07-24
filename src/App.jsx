@@ -16,7 +16,7 @@ const GOOGLE_CLIENT_ID = '31181968054-ta74c5q9baeqqkrb636g7iauoa612f2c.apps.goog
 function AnimatedRoutes() {
   const location = useLocation()
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
