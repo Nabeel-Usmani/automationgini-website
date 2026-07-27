@@ -1,5 +1,6 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import heroVideo from '../assets/hero-video.mp4'
 import PillButton from './PillButton'
 
@@ -13,8 +14,17 @@ const item = {
 }
 
 export default function Hero() {
+  const sectionRef = useRef(null)
+  // Pinned/parallax feel: as the hero scrolls past, the video lags behind,
+  // scales up slightly, and softens out — rather than moving 1:1 with the page.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  const videoY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
+  const videoOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.5])
+  const captionOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+
   return (
-    <section id="top" className="relative bg-white overflow-hidden">
+    <section ref={sectionRef} id="top" className="relative bg-white overflow-hidden">
       <motion.div
         variants={container}
         initial="hidden"
@@ -27,12 +37,19 @@ export default function Hero() {
         </motion.div>
 
         <div className="relative rounded-3xl overflow-hidden bg-ice">
-          <video autoPlay loop muted playsInline className="w-full h-[280px] md:h-[420px] object-cover">
+          <motion.video
+            style={{ y: videoY, scale: videoScale, opacity: videoOpacity }}
+            autoPlay loop muted playsInline
+            className="w-full h-[280px] md:h-[420px] object-cover will-change-transform"
+          >
             <source src={heroVideo} type="video/mp4" />
-          </video>
-          <span className="absolute top-5 left-5 font-mono text-[11px] uppercase tracking-wider bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-navy/70">
+          </motion.video>
+          <motion.span
+            style={{ opacity: captionOpacity }}
+            className="absolute top-5 left-5 font-mono text-[11px] uppercase tracking-wider bg-white/90 backdrop-blur px-3 py-1.5 rounded-full text-navy/70"
+          >
             Live product demo
-          </span>
+          </motion.span>
         </div>
 
         <motion.h1 variants={item} className="mt-14 font-display font-medium text-[2.75rem] leading-[1.05] md:text-[5rem] md:leading-[1.02] text-navy tracking-tight max-w-4xl">
