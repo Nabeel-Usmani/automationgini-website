@@ -9,8 +9,8 @@ export default function TrustBar() {
   ]
 
   return (
-    <section className="bg-white border-t border-navy/[0.06]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-20">
+    <section className="bg-white border-t border-navy/[0.08]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 md:py-16">
         <div className="grid sm:grid-cols-3 gap-10 sm:gap-8">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 80} className={`${i > 0 ? 'sm:border-l sm:border-navy/10 sm:pl-8' : ''}`}>
@@ -19,7 +19,7 @@ export default function TrustBar() {
                   value={s.value}
                   className="font-display font-semibold text-6xl md:text-7xl text-navy tracking-tight tabular-nums"
                 />
-                <span className="font-mono text-sm font-medium text-blue">{s.unit}</span>
+                <span className="font-mono text-sm font-medium text-slate">{s.unit}</span>
               </div>
               <p className="font-body text-[15px] text-slate leading-snug mt-3 max-w-[220px]">{s.label}</p>
             </Reveal>

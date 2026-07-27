@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import PageHero from '../components/PageHero'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
+import PillButton from '../components/PillButton'
 import Upsells from '../components/Upsells'
 import CTASection from '../components/CTASection'
 import Footer from '../components/Footer'
@@ -26,8 +26,8 @@ export default function Pricing() {
 
       <section className="bg-white pb-10">
         <div className="max-w-3xl mx-auto px-6 lg:px-10">
-          <Reveal className="rounded-3xl border border-navy/10 bg-ice/60 p-9 md:p-12 text-center">
-            <p className="font-mono text-xs tracking-widest text-blue uppercase mb-3">Free plan</p>
+          <Reveal className="border border-navy/10 bg-ice p-9 md:p-12 text-center">
+            <p className="font-mono text-xs tracking-widest text-navy/40 uppercase mb-3">Free plan</p>
             <div className="flex items-baseline justify-center gap-1.5 mb-6">
               <span className="font-display font-semibold text-6xl text-navy tracking-tight">$0</span>
               <span className="font-mono text-sm text-slate/60">/month</span>
@@ -40,12 +40,7 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            <Link
-              to="/signup"
-              className="inline-block font-body font-semibold text-white bg-navy hover:bg-blue px-8 py-3.5 rounded-lg transition-colors"
-            >
-              Sign up free
-            </Link>
+            <PillButton to="/signup">Sign up free</PillButton>
           </Reveal>
         </div>
       </section>
@@ -55,7 +50,7 @@ export default function Pricing() {
       <section className="bg-ice py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-6 lg:px-10 text-center">
           <Reveal>
-            <h2 className="font-display font-semibold text-3xl md:text-4xl text-navy tracking-tight leading-[1.05] mb-4">
+            <h2 className="font-display font-medium text-3xl md:text-4xl text-navy tracking-tight leading-[1.05] mb-4">
               Running a full team or higher volume?
             </h2>
             <p className="font-body text-lg text-slate leading-relaxed mb-8 max-w-xl mx-auto">
@@ -63,18 +58,8 @@ export default function Pricing() {
               allowances and team seats. Sign up to see what fits, or talk to us directly.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link
-                to="/signup"
-                className="font-body font-semibold text-white bg-navy hover:bg-blue px-7 py-3.5 rounded-lg transition-colors"
-              >
-                Explore plans
-              </Link>
-              <Link
-                to="/contact"
-                className="font-body font-semibold text-navy border border-navy/20 hover:border-navy/40 px-7 py-3.5 rounded-lg transition-colors"
-              >
-                Talk to us
-              </Link>
+              <PillButton to="/signup">Explore plans</PillButton>
+              <PillButton to="/contact" variant="outline">Talk to us</PillButton>
             </div>
           </Reveal>
         </div>

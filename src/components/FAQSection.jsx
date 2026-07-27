@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Reveal from './Reveal'
+import SectionIntro from './SectionIntro'
 
 const faqs = [
   {
@@ -36,7 +37,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.25 }}
-          className="shrink-0 w-7 h-7 rounded-full bg-white flex items-center justify-center text-navy text-lg font-body"
+          className="shrink-0 w-7 h-7 rounded-full bg-ice flex items-center justify-center text-navy text-lg font-body"
         >
           +
         </motion.span>
@@ -62,24 +63,22 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section className="bg-ice py-24 md:py-32">
-      <div className="max-w-3xl mx-auto px-6 lg:px-10">
-        <Reveal className="mb-12 md:mb-14">
-          <p className="font-mono text-xs tracking-widest text-blue uppercase mb-3">FAQ</p>
-          <h2 className="font-display font-semibold text-3xl md:text-5xl text-navy tracking-tight leading-[1.05]">
-            Questions, answered.
-          </h2>
-        </Reveal>
+    <section className="bg-white py-4 md:py-6">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <SectionIntro eyebrow="FAQ">Questions, answered.</SectionIntro>
 
-        <Reveal delay={80}>
-          {faqs.map((faq, i) => (
-            <FAQItem
-              key={faq.q}
-              faq={faq}
-              isOpen={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
-            />
-          ))}
+        <Reveal className="grid md:grid-cols-[160px_1fr] gap-6 md:gap-10 pb-16 md:pb-20">
+          <div />
+          <div className="max-w-2xl">
+            {faqs.map((faq, i) => (
+              <FAQItem
+                key={faq.q}
+                faq={faq}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
+              />
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import LogoIcon from '../assets/logo-icon.png'
 import Reveal from './Reveal'
+import PillButton from './PillButton'
 
 const columns = [
   {
@@ -36,30 +36,34 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white pt-24 pb-10 border-t border-navy/[0.06]">
-      <Reveal className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-12 pb-14 border-b border-navy/[0.06]">
+    <footer className="relative bg-navy-deep text-white pt-24 md:pt-32 overflow-hidden">
+      <Reveal className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-16 md:pb-20">
+          <h2 className="font-display font-medium text-4xl md:text-6xl tracking-tight leading-[1.05] max-w-lg">
+            Let&rsquo;s build your <span className="font-flourish italic font-normal">pipeline</span>.
+          </h2>
+          <PillButton to="/signup" variant="ghost">Sign up free</PillButton>
+        </div>
+
+        <div className="grid md:grid-cols-[1.3fr_repeat(3,1fr)] gap-10 md:gap-12 pb-14 border-t border-white/10 pt-12">
           <div>
-            <Link to="/" className="flex items-center gap-2 mb-4 w-fit">
-              <img src={LogoIcon} alt="" className="h-8 w-auto" />
-              <span className="font-display font-semibold text-xl tracking-tight text-navy">
-                Automation<span className="text-amber">Gini</span>
-              </span>
-            </Link>
-            <p className="font-body text-sm text-slate/70 max-w-xs leading-relaxed">
+            <span className="font-wordmark font-black text-lg tracking-tight uppercase">
+              Automation<span className="text-white/50">Gini</span>
+            </span>
+            <p className="font-body text-sm text-white/50 max-w-xs leading-relaxed mt-4">
               AI-powered lead generation and client automation, built for agencies.
             </p>
           </div>
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="font-body font-semibold text-navy text-sm mb-4">{col.title}</h4>
+              <h4 className="font-mono text-xs uppercase tracking-widest text-white/40 mb-4">{col.title}</h4>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       to={l.to}
-                      className="font-body text-sm text-slate/70 hover:text-navy transition-colors"
+                      className="font-body text-sm text-white/70 hover:text-white transition-colors"
                     >
                       {l.label}
                     </Link>
@@ -70,16 +74,16 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8">
-          <p className="font-mono text-xs text-slate/50">
-            &copy; 2026 AutomationGini. All rights reserved.
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-8 border-t border-white/10">
+          <p className="font-mono text-xs text-white/40 uppercase tracking-wider">
+            &copy; AutomationGini 2024&ndash;2026. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {legalLinks.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="font-mono text-xs text-slate/50 hover:text-navy transition-colors"
+                className="font-mono text-xs text-white/40 hover:text-white uppercase tracking-wider transition-colors"
               >
                 {l.label}
               </Link>
@@ -87,6 +91,12 @@ export default function Footer() {
           </div>
         </div>
       </Reveal>
+
+      <div className="select-none pointer-events-none -mb-[3vw] overflow-hidden">
+        <span className="block font-wordmark font-black uppercase text-white leading-none tracking-tight whitespace-nowrap text-center text-[12vw]">
+          AutomationGini
+        </span>
+      </div>
     </footer>
   )
 }
