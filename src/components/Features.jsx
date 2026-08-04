@@ -29,6 +29,27 @@ const features = [
     tags: ['Real conversation memory', 'Works on any site', 'Editable live'],
     image: 'https://images.pexels.com/photos/7342998/pexels-photo-7342998.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
+  {
+    id: 'messenger',
+    title: 'Messenger',
+    desc: 'One inbox for every conversation your clients are having across channels — no more juggling five different apps to answer a lead.',
+    tags: ['Unified inbox', 'Team-shared threads', 'Fast replies'],
+    image: 'https://images.pexels.com/photos/8413176/pexels-photo-8413176.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'email-automation',
+    title: 'Email Automation',
+    desc: 'Every new lead automatically gets a personalized outreach email with a live demo built in, then a follow-up sequence until they reply.',
+    tags: ['Auto-enrollment', 'Built-in demo previews', 'Reply detection'],
+    image: 'https://images.pexels.com/photos/12903031/pexels-photo-12903031.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'social-media-automation',
+    title: 'Social Media Automation',
+    desc: 'On-brand posts generated and scheduled across your clients’ social profiles automatically — no manual content calendar required.',
+    tags: ['Auto-generated posts', 'Multi-platform', 'Zero manual work'],
+    image: 'https://images.pexels.com/photos/11169211/pexels-photo-11169211.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
 ]
 
 export default function Features() {

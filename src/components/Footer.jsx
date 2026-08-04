@@ -10,6 +10,9 @@ const columns = [
       { label: 'Voice Demos', to: '/features#ai-voice-demos' },
       { label: 'Website Builder', to: '/features#website-builder' },
       { label: 'AI Chatbot', to: '/features#ai-chatbot' },
+      { label: 'Messenger', to: '/features#messenger' },
+      { label: 'Email Automation', to: '/features#email-automation' },
+      { label: 'Social Media Automation', to: '/features#social-media-automation' },
     ],
   },
   {

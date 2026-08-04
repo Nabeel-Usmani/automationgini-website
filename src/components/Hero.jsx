@@ -21,9 +21,23 @@ export default function Hero() {
         animate="visible"
         className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-20 md:pt-44 md:pb-28"
       >
-        <motion.div variants={item} className="inline-flex items-center gap-2 bg-ice rounded-full px-4 py-1.5 mb-10">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
-          <span className="font-mono text-xs tracking-wide text-navy/60 uppercase">AI-powered lead generation</span>
+        <motion.div variants={item} className="flex flex-wrap items-center gap-3 mb-10">
+          <div className="inline-flex items-center gap-2 bg-ice rounded-full px-4 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
+            <span className="font-mono text-xs tracking-wide text-navy/60 uppercase">AI-powered lead generation</span>
+          </div>
+          <a
+            href="https://www.producthunt.com/products/automationgini?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-automationgini"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1209658&theme=light"
+              alt="AutomationGini - AI that finds, qualifies, and books leads for agencies | Product Hunt"
+              width="200"
+              height="43"
+            />
+          </a>
         </motion.div>
 
         <div className="relative rounded-3xl overflow-hidden bg-ice">

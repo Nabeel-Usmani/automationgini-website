@@ -7,6 +7,9 @@ const features = [
   { title: 'AI Voice Demos', desc: 'A live outbound call, personalized to that business, in English or 9 languages.' },
   { title: 'Website Builder', desc: 'A real multi-page site generated from their reviews — preview it free.' },
   { title: 'AI Chatbot', desc: 'A widget that talks to visitors and remembers the conversation.' },
+  { title: 'Messenger', desc: 'One shared inbox for every client conversation, across channels.' },
+  { title: 'Email Automation', desc: 'Auto-enrolled outreach with a live demo built into every email.' },
+  { title: 'Social Media Automation', desc: 'On-brand posts generated and scheduled automatically.' },
 ]
 
 export default function FeaturesTeaser() {
