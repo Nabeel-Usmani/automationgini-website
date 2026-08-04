@@ -26,6 +26,9 @@ export default function Nav() {
           <span className="font-wordmark font-black text-lg md:text-xl tracking-tight text-navy uppercase">
             Automation<span className="text-slate">Gini</span>
           </span>
+          <span className="font-mono text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-navy/70 bg-ice rounded-full px-2 py-0.5">
+            Beta
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1 bg-ice rounded-full px-2 py-2">

@@ -175,20 +175,20 @@ export default function Auth({ initialMode = 'signup' }) {
                   Individual
                 </button>
                 <button
-                  onClick={() => switchAccountType('agency_owner')}
-                  className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
-                    accountType === 'agency_owner' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
-                  }`}
+                  disabled
+                  title="Coming soon — agency owner accounts are set up by AutomationGini for now"
+                  className="font-body font-semibold text-xs px-3.5 py-1.5 rounded-full text-slate-400 cursor-not-allowed flex items-center gap-1.5"
                 >
                   Agency Owner
+                  <span className="font-mono text-[9px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-100 rounded-full px-1.5 py-0.5">Soon</span>
                 </button>
                 <button
-                  onClick={() => switchAccountType('agent')}
-                  className={`font-body font-semibold text-xs px-3.5 py-1.5 rounded-full transition-colors ${
-                    accountType === 'agent' ? 'bg-navy text-white' : 'text-slate-500 hover:text-slate-700'
-                  }`}
+                  disabled
+                  title="Coming soon — agents are added by their agency owner"
+                  className="font-body font-semibold text-xs px-3.5 py-1.5 rounded-full text-slate-400 cursor-not-allowed flex items-center gap-1.5"
                 >
                   Agent
+                  <span className="font-mono text-[9px] font-semibold uppercase tracking-wide text-amber-700 bg-amber-100 rounded-full px-1.5 py-0.5">Soon</span>
                 </button>
               </div>
 
