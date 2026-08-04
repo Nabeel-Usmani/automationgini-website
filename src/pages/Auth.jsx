@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google'
 import LogoIcon from '../assets/logo-icon.png'
@@ -20,6 +20,8 @@ export default function Auth({ initialMode = 'signup' }) {
   const [form, setForm] = useState({
     firstName: '', lastName: '', company: '', email: '', password: '',
   })
+
+  useLayoutEffect(() => { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }) }, [])
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
 
