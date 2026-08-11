@@ -10,6 +10,7 @@ import Auth from './pages/Auth'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Book from './pages/Book'
+import ThreeMonthPricingPlan from './pages/ThreeMonthPricingPlan'
 import ChatWidget from './components/ChatWidget'
 
 const GOOGLE_CLIENT_ID = '31181968054-ta74c5q9baeqqkrb636g7iauoa612f2c.apps.googleusercontent.com'
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/book/:slug" element={<Book />} />
+        <Route path="/3-MonthPricingPlan" element={<ThreeMonthPricingPlan />} />
       </Routes>
     </AnimatePresence>
   )
