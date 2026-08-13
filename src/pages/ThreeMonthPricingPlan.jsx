@@ -69,34 +69,34 @@ function BudgetBar({ label, value, amount, tone = 'bg-navy' }) {
 const monthRows = [
   {
     label: 'Aug',
-    sub: 'pre-Sep-1 rate · Snov Starter · Higgsfield not active',
-    demos: '60', calls: '150', claude: '$22.80', vapi: '$49.50', snov: '$37.05',
-    higgs: '—', gemini: '$2.00', render: '$90.15', draw: '$33.34', total: '$234.84',
+    sub: 'pre-Sep-1 rate · Snov Starter · Higgsfield not active · demos cut 60→40/mo',
+    demos: '40', calls: '150', claude: '$15.20', vapi: '$49.50', snov: '$37.05',
+    higgs: '—', gemini: '$2.00', render: '$90.15', draw: '$66.67', total: '$260.57',
   },
   {
     label: 'Sep',
-    sub: 'new Claude rate · Snov Pro · Higgsfield active',
-    demos: '60', calls: '150', claude: '$34.80', vapi: '$49.50', snov: '$94.05',
-    higgs: '$49.00', gemini: '$2.50', render: '$100.00', draw: '$33.33', total: '$363.18',
+    sub: 'new Claude rate · Snov Pro · Higgsfield delayed to Oct',
+    demos: '40', calls: '150', claude: '$23.20', vapi: '$49.50', snov: '$94.05',
+    higgs: '—', gemini: '$2.50', render: '$100.00', draw: '$66.66', total: '$335.91',
   },
   {
     label: 'Oct',
-    sub: 'steady state',
-    demos: '60', calls: '150', claude: '$34.80', vapi: '$49.50', snov: '$94.05',
-    higgs: '$49.00', gemini: '$3.00', render: '$110.00', draw: '$33.33', total: '$373.68',
+    sub: 'steady state · Higgsfield active (Oct only)',
+    demos: '40', calls: '150', claude: '$23.20', vapi: '$49.50', snov: '$94.05',
+    higgs: '$49.00', gemini: '$3.00', render: '$110.00', draw: '$66.67', total: '$395.42',
   },
 ]
 
 const totalsRow = {
-  demos: '180', calls: '450', claude: '$92.40', vapi: '$148.50', snov: '$225.15',
-  higgs: '$98.00', gemini: '$7.50', render: '$300.15', draw: '$100.00', total: '$971.70',
+  demos: '120', calls: '450', claude: '$61.60', vapi: '$148.50', snov: '$225.15',
+  higgs: '$49.00', gemini: '$7.50', render: '$300.15', draw: '$200.00', total: '$991.90',
 }
 
 const replacementTargets = [
   {
     title: 'Prompting',
     vendor: 'Anthropic Claude',
-    cost: '$92.40 / 3 mo',
+    cost: '$61.60 / 3 mo',
     inHouse: 'Self-hosted open-weight model (Llama / Qwen) for low-stakes generation; Claude stays for quality-critical site output.',
     tone: 'no',
     status: 'Not at this budget',
@@ -155,7 +155,7 @@ export default function ThreeMonthPricingPlan() {
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <Reveal>
             <p className="font-mono text-xs tracking-widest text-navy/40 uppercase mb-4">
-              Investor briefing &middot; cost model draft v3
+              Investor briefing &middot; cost model draft v4
             </p>
             <h1 className="font-display font-medium text-4xl md:text-5xl text-navy tracking-tight leading-[1.08] max-w-3xl">
               3-month infrastructure cost plan
@@ -233,7 +233,7 @@ export default function ThreeMonthPricingPlan() {
 
           <div className="grid md:grid-cols-2 gap-4">
             <Reveal>
-              <VendorCard name="Anthropic Claude" tag="verified" tone="ok" role="Generates every page of a website demo (4 pages/site).">
+              <VendorCard name="Anthropic Claude" tag="verified" tone="ok" role="Generates every page of a website demo (4 pages/site). Modeled volume cut from 60/mo to 40/mo this round to help fund the larger founder draw below.">
                 <RateLine k="Input, through Aug 31" v="$2 / MTok" />
                 <RateLine k="Output, through Aug 31" v="$10 / MTok" />
                 <RateLine k="Input, from Sep 1" v="$3 / MTok" />
@@ -266,16 +266,17 @@ export default function ThreeMonthPricingPlan() {
               </VendorCard>
             </Reveal>
             <Reveal delay={240}>
-              <VendorCard name="Higgsfield" tag="verified, optional" tone="ok" role="Image/video generation for site-demo hero assets. Budgeted from month 2 &mdash; still mid-evaluation in month 1.">
+              <VendorCard name="Higgsfield" tag="verified, optional" tone="ok" role="Image/video generation for site-demo hero assets. Pushed back to Oct only this round &mdash; the second month of runway is going to the founder draw instead.">
                 <RateLine k="Free plan" v="generation blocked" />
                 <RateLine k="Paid plan" v="$49 / mo" />
-                <RateLine k="Aug" v="not budgeted" />
+                <RateLine k="Aug–Sep" v="not budgeted" />
+                <RateLine k="Oct only" v="$49.00" />
               </VendorCard>
             </Reveal>
             <Reveal delay={300}>
-              <VendorCard name="Founder / operator draw" tag="disclosed line item" tone="ok" role="Not a vendor &mdash; operator time, budgeted openly like every other line here rather than folded into someone else&rsquo;s number.">
-                <RateLine k="3-month total" v="$100.00" />
-                <RateLine k="Spread evenly" v="≈$33.33 / mo" />
+              <VendorCard name="Founder / operator draw" tag="disclosed line item" tone="ok" role="Not a vendor &mdash; operator time, budgeted openly like every other line here. Increased this round by trimming modeled demo volume and delaying Higgsfield further, never by folding it into another vendor&rsquo;s number.">
+                <RateLine k="3-month total" v="$200.00" />
+                <RateLine k="Spread evenly" v="≈$66.67 / mo" />
               </VendorCard>
             </Reveal>
           </div>
@@ -314,10 +315,12 @@ export default function ThreeMonthPricingPlan() {
               Fit to the $1,000 ceiling
             </h2>
             <p className="font-body text-slate leading-relaxed max-w-2xl mb-3">
-              Vapi&rsquo;s call volume stays fixed at 150/mo &mdash; what changed is costing its LLM leg
-              on the existing Anthropic key instead of Vapi&rsquo;s pass-through, which drops it from
-              $216 to $148.50 across 3 months. That freed-up room, plus Higgsfield starting in month 2,
-              makes space for a disclosed founder/operator draw without breaking the ceiling.
+              Vapi&rsquo;s call volume stays fixed at 150/mo &mdash; its LLM leg still runs on the
+              existing Anthropic key instead of Vapi&rsquo;s pass-through ($216 → $148.50 across 3
+              months). This round adds a second lever on top: modeled site-demo volume is cut from
+              60/mo to 40/mo, and Higgsfield moves from a month-2 start to Oct only. Together that
+              frees enough room to take the founder/operator draw from $100 to $200 over 3 months
+              &mdash; still its own disclosed line, still under the $1,000 ceiling.
             </p>
             <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 mb-8 max-w-2xl">
               <p className="font-body text-sm text-amber-900 leading-relaxed">
@@ -376,21 +379,21 @@ export default function ThreeMonthPricingPlan() {
           <Reveal delay={140}>
             <p className="font-body text-sm text-slate leading-relaxed mt-4 max-w-2xl">
               Gemini&rsquo;s line is a deliberately generous placeholder, not a real rate. The plan lands
-              at <strong className="text-navy">$971.70</strong> &mdash; $28.30 under the $1,000 ceiling,
-              with the $100 founder/operator draw as its own visible line, never folded into anyone else&rsquo;s number.
+              at <strong className="text-navy">$991.90</strong> &mdash; $8.10 under the $1,000 ceiling,
+              with the $200 founder/operator draw as its own visible line, never folded into anyone else&rsquo;s number.
             </p>
 
             <div className="mt-8 bg-ice rounded-xl p-6">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-navy/40 mb-4">Where the $971.70 goes</p>
-              <BudgetBar label="Render (hosting)" value={30.9} amount="$300.15" tone="bg-navy" />
-              <BudgetBar label="Snov.io" value={23.2} amount="$225.15" tone="bg-navy/70" />
-              <BudgetBar label="Vapi (BYOK)" value={15.3} amount="$148.50" tone="bg-navy/55" />
-              <BudgetBar label="Founder draw" value={10.3} amount="$100.00" tone="bg-amber-500" />
-              <BudgetBar label="Higgsfield (from Sep)" value={10.1} amount="$98.00" tone="bg-navy/40" />
-              <BudgetBar label="Claude" value={9.5} amount="$92.40" tone="bg-navy/30" />
+              <p className="font-mono text-[10px] uppercase tracking-widest text-navy/40 mb-4">Where the $991.90 goes</p>
+              <BudgetBar label="Render (hosting)" value={30.0} amount="$300.15" tone="bg-navy" />
+              <BudgetBar label="Snov.io" value={22.5} amount="$225.15" tone="bg-navy/70" />
+              <BudgetBar label="Founder draw" value={20.0} amount="$200.00" tone="bg-amber-500" />
+              <BudgetBar label="Vapi (BYOK)" value={14.9} amount="$148.50" tone="bg-navy/55" />
+              <BudgetBar label="Claude (40 demos/mo)" value={6.2} amount="$61.60" tone="bg-navy/30" />
+              <BudgetBar label="Higgsfield (Oct only)" value={4.9} amount="$49.00" tone="bg-navy/40" />
               <BudgetBar label="Gemini (placeholder)" value={0.8} amount="$7.50" tone="bg-navy/15" />
               <div className="border-t border-navy/10 mt-2 pt-3">
-                <BudgetBar label="Headroom to $1,000" value={2.8} amount="$28.30" tone="bg-emerald-400" />
+                <BudgetBar label="Headroom to $1,000" value={0.8} amount="$8.10" tone="bg-emerald-400" />
               </div>
             </div>
           </Reveal>
@@ -415,7 +418,7 @@ export default function ThreeMonthPricingPlan() {
             {[
               { name: 'Snov.io', tone: 'realistic', status: 'Realistic', why: 'This is the one true match. The replacement is mostly already built &mdash; evidence-based owner-discovery + MX-record verification, running on Perplexity and DNS lookups, not Snov. The 3 months of Snov spend above is exactly "feed the system, then drop the vendor."' },
               { name: 'Vapi', tone: 'no', status: 'Not yet, wrong reason', why: 'Vapi is orchestration, not a foundation model — genuinely buildable in principle. But at 150 calls/mo (450 min), its own markup over BYOK is only ≈$22.50/mo. A self-hosted stack costs more in GPU/ops than that saves. Pays off at much higher call volume, not this one.' },
-              { name: 'Claude', tone: 'no', status: 'Not at this budget', why: 'A foundation model, not a service — training one from scratch runs into hundreds of millions of dollars. Self-hosting an open-weight model trades API cost for GPU rental, and a single dedicated instance costs more per month than this entire 3-month Claude line ($92.40). Realistic move: route low-stakes generation to a cheaper hosted model, keep Claude for what needs the quality.' },
+              { name: 'Claude', tone: 'no', status: 'Not at this budget', why: 'A foundation model, not a service — training one from scratch runs into hundreds of millions of dollars. Self-hosting an open-weight model trades API cost for GPU rental, and a single dedicated instance costs more per month than this entire 3-month Claude line ($61.60). Realistic move: route low-stakes generation to a cheaper hosted model, keep Claude for what needs the quality.' },
               { name: 'Google AI Studio', tone: 'no', status: 'Not worth it', why: 'Same logic as Claude, smaller stakes — Gemini Flash-Lite is already cheap enough (under $10/mo at this volume) that there’s very little to save by self-hosting, and GPU cost would dwarf the savings.' },
               { name: 'Higgsfield', tone: 'partial', status: 'Partial, later', why: 'Open-weight image models (Stable Diffusion / Flux) are closer to commercial quality than open LLMs are to Claude, so this is more plausible than the other three — but still means a hosted API for the open model, not a self-run GPU at this volume. Worth revisiting once spend clears a few hundred dollars a month.' },
             ].map((row, i) => (
