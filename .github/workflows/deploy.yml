@@ -29,14 +29,47 @@ jobs:
               git fetch origin vps
               git reset --hard origin/vps
             fi
+
+            clone_or_update() {
+              dir="$1"; repo="$2"; branch="$3"
+              if [ ! -d "$dir/.git" ]; then
+                rm -rf "$dir"
+                git clone -b "$branch" "https://github.com/$repo.git" "$dir"
+              else
+                git -C "$dir" fetch origin "$branch"
+                git -C "$dir" reset --hard "origin/$branch"
+              fi
+            }
+
+            clone_or_update api Nabeel-Usmani/automationgini-api main
+            clone_or_update crm Nabeel-Usmani/automationgini-crmv2 main
+            clone_or_update website Nabeel-Usmani/automationgini-website claude/logo-transparency-background-859l4q
+
             cat > .env <<EOF
             POSTGRES_USER=n8n
             POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
             N8N_ENCRYPTION_KEY=${{ secrets.N8N_ENCRYPTION_KEY }}
-            N8N_HOST=${{ secrets.VPS_HOST }}
-            N8N_PROTOCOL=http
-            WEBHOOK_URL=http://${{ secrets.VPS_HOST }}/
+            N8N_HOST=app.automationgini.com
+            N8N_PROTOCOL=https
+            WEBHOOK_URL=https://app.automationgini.com/
             GENERIC_TIMEZONE=UTC
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
             EOF
-            docker compose -f docker-compose.yml --env-file .env up -d --remove-orphans
+
+            docker compose -f docker-compose.yml --env-file .env up -d --build --remove-orphans
+
+            echo "Waiting for postgres..."
+            for i in $(seq 1 30); do
+              docker compose exec -T postgres pg_isready -U n8n >/dev/null 2>&1 && break
+              sleep 2
+            done
+
+            docker compose exec -T postgres psql -U n8n -d postgres -tc "SELECT 1 FROM pg_database WHERE datname='automationgini'" | grep -q 1 || \
+              docker compose exec -T postgres psql -U n8n -d postgres -c "CREATE DATABASE automationgini"
+
+            for f in $(ls api/migrations/*.sql | sort); do
+              echo "Applying $f"
+              cat "$f" | docker compose exec -T postgres psql -U n8n -d automationgini
+            done
+
             docker image prune -f
