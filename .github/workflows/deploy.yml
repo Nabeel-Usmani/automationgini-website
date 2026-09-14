@@ -9,12 +9,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Decode SSH key
+        run: |
+          echo "${{ secrets.VPS_SSH_KEY_B64 }}" | base64 -d > "$RUNNER_TEMP/deploy_key"
+          chmod 600 "$RUNNER_TEMP/deploy_key"
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          key_path: ${{ runner.temp }}/deploy_key
           script: |
             set -e
             mkdir -p /opt/automationgini
@@ -36,4 +40,3 @@ jobs:
             EOF
             docker compose -f docker-compose.yml --env-file .env up -d --remove-orphans
             docker image prune -f
-# retry-1
