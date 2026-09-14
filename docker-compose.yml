@@ -31,7 +31,7 @@ services:
       N8N_HOST: ${N8N_HOST:-app.automationgini.com}
       N8N_PROTOCOL: ${N8N_PROTOCOL:-https}
       N8N_PORT: 5678
-      N8N_SECURE_COOKIE: "false"
+      N8N_SECURE_COOKIE: "true"
       WEBHOOK_URL: ${WEBHOOK_URL:-https://app.automationgini.com/}
       GENERIC_TIMEZONE: ${GENERIC_TIMEZONE:-UTC}
       N8N_RUNNERS_ENABLED: "true"
