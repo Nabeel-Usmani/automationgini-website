@@ -1,3 +1,15 @@
-:80 {
+app.automationgini.com {
 	reverse_proxy n8n:5678
+}
+
+api.automationgini.com {
+	reverse_proxy api:8000
+}
+
+crm.automationgini.com {
+	reverse_proxy crm:80
+}
+
+automationgini.com, www.automationgini.com {
+	reverse_proxy website:80
 }
