@@ -40,3 +40,4 @@ jobs:
             EOF
             docker compose -f docker-compose.yml --env-file .env up -d --remove-orphans
             docker image prune -f
+# retry-2
