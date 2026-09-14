@@ -58,6 +58,13 @@ jobs:
 
             docker compose -f docker-compose.yml --env-file .env up -d --build --remove-orphans
 
+            # docker compose only recreates a container when ITS OWN config
+            # changes - a bind-mounted file (the Caddyfile) changing content
+            # on disk doesn't count, so the running Caddy process would
+            # otherwise keep serving whatever config it started with. Force
+            # a reload every deploy so Caddyfile edits always take effect.
+            docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
+
             echo "Waiting for postgres..."
             for i in $(seq 1 30); do
               docker compose exec -T postgres pg_isready -U n8n >/dev/null 2>&1 && break
