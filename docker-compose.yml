@@ -56,6 +56,7 @@ services:
       GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
       APIFLASH_ACCESS_KEY: ${APIFLASH_ACCESS_KEY:-}
       BUSINESS_CRM_DEMO_WEBHOOK_URL: https://app.automationgini.com/webhook/business-crm-demo
+      CHECKOUT_WEBHOOK_URL: https://app.automationgini.com/webhook/checkout
 
   crm:
     build: ./crm
