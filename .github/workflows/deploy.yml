@@ -1,0 +1,38 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [vps]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            mkdir -p /opt/automationgini
+            cd /opt/automationgini
+            if [ ! -d .git ]; then
+              git clone -b vps https://github.com/Nabeel-Usmani/automationgini-website.git .
+            else
+              git fetch origin vps
+              git reset --hard origin/vps
+            fi
+            cat > .env <<EOF
+            POSTGRES_USER=n8n
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            N8N_ENCRYPTION_KEY=${{ secrets.N8N_ENCRYPTION_KEY }}
+            N8N_HOST=${{ secrets.VPS_HOST }}
+            N8N_PROTOCOL=http
+            WEBHOOK_URL=http://${{ secrets.VPS_HOST }}/
+            GENERIC_TIMEZONE=UTC
+            EOF
+            docker compose -f docker-compose.yml --env-file .env up -d --remove-orphans
+            docker image prune -f
